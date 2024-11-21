@@ -24,40 +24,36 @@ $result = $conn->query($sql);
     <title>Admin - Data Mitra</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
     <style>
-    /* CSS untuk background gambar */
-/* CSS untuk background warna */
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
+    /* CSS untuk background warna */
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
 
-body {
-    background-color: #79A37E; /* Ganti dengan warna latar belakang yang diinginkan (misalnya hijau) */
-    color: #ffffff;
-}
+    body {
+        background-color: #79A37E; /* Ganti dengan warna latar belakang yang diinginkan (misalnya hijau) */
+        color: #ffffff;
+    }
 
-.container {
-    background-color: rgba(27, 120, 37, 0.8); /* Warna hijau tua dengan transparansi */
-    padding: 20px;
-    border-radius: 8px;
-}
+    .container {
+        background-color: rgba(27, 120, 37, 0.8); /* Warna hijau tua dengan transparansi */
+        padding: 20px;
+        border-radius: 8px;
+    }
 
-h2 {
-    color: #ffffff;
-}
+    h2 {
+        color: #ffffff;
+    }
 
-/* Mengatur warna font pada tabel */
-.table, .table th, .table td {
-    color: #ffffff; /* Warna font putih untuk header dan sel tabel */
-}
+    /* Mengatur warna font pada tabel */
+    .table, .table th, .table td {
+        color: #ffffff; /* Warna font putih untuk header dan sel tabel */
+    }
 
-/* Pastikan header tabel juga berwarna putih */
-.table th {
-    color: #ffffff !important; /* Tambahkan !important untuk memastikan header tabel selalu putih */
-}
-
-
+    .table th {
+        color: #ffffff !important; /* Tambahkan !important untuk memastikan header tabel selalu putih */
+    }
     </style>
 </head>
 <body>
@@ -102,6 +98,44 @@ h2 {
                 ?>
             </tbody>
         </table>
+    </div>
+
+    <div class="container mt-5">
+        <h2>Unggah Foto Terbaru</h2>
+        <form action="upload_photo.php" method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="photo" class="form-label">Pilih Foto</label>
+                <input type="file" class="form-control" id="photo" name="photo" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Unggah Foto</button>
+        </form>
+    </div>
+
+    <div class="container mt-5">
+        <h2>Tambah Testimoni Baru</h2>
+        <form action="add_testimonial.php" method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="name" class="form-label">Nama</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="mb-3">
+                <label for="role" class="form-label">Jabatan</label>
+                <input type="text" class="form-control" id="role" name="role" required>
+            </div>
+            <div class="mb-3">
+                <label for="stars" class="form-label">Jumlah Bintang (1-5)</label>
+                <input type="number" class="form-control" id="stars" name="stars" min="1" max="5" required>
+            </div>
+            <div class="mb-3">
+                <label for="message" class="form-label">Pesan</label>
+                <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Foto Testimoni</label>
+                <input type="file" class="form-control" id="image" name="image" required>
+            </div>
+            <button type="submit" class="btn btn-success">Tambah Testimoni</button>
+        </form>
     </div>
 </body>
 </html>
