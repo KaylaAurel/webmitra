@@ -1,3 +1,7 @@
+<?php
+// Include any necessary PHP files (e.g., for header, footer, etc.)
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,7 +45,7 @@
   <header id="header" class="header d-flex align-items-center sticky-top"  style="background-color: #00950F;">
     <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+      <a href="index.php" class="logo d-flex align-items-center me-auto me-xl-0">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
         <h1 class="sitename">MitraSengon</h1><span>.</span>
@@ -49,14 +53,14 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="index.html#hero">Home</a></li>
-          <li><a href="index.html#about">About</a></li>
-          <li><a href="index.html#services">Services</a></li>
-          <li><a href="index.html#portfolio">Gallery</a></li>
-          <li><a href="index.html#pricing">Mitra</a></li>
-          <li><a href="index.html#team">Team</a></li>
-          <li><a href="blog.html" class="active">Article</a></li>
-          <li><a href="index.html#contact">Contact</a></li>
+          <li><a href="index.php#hero">Home</a></li>
+          <li><a href="index.php#about">About</a></li>
+          <li><a href="index.php#services">Services</a></li>
+          <li><a href="index.php#portfolio">Gallery</a></li>
+          <li><a href="index.php#pricing">Mitra</a></li>
+          <li><a href="index.php#team">Team</a></li>
+          <li><a href="blog.php#article" class="active">Article</a></li>
+          <li><a href="index.php#contact">Contact</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -82,7 +86,7 @@
       <nav class="breadcrumbs">
         <div class="container">
           <ol>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="index.php">Home</a></li>
             <li class="current">Article</li>
           </ol>
         </div>

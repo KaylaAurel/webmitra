@@ -41,22 +41,22 @@
   <header id="header" class="header d-flex align-items-center fixed-top" >
     <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+      <a href="index.php" class="logo d-flex align-items-center me-auto me-xl-0">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
         <h1 class="sitename">MitraSengon</h1><span>.</span>
       </a>
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="index.html#hero" class="active">Home</a></li>
-          <li><a href="index.html#about">About</a></li>
-          <li><a href="index.html#services">Services</a></li>
-          <li><a href="index.html#portfolio">Gallery</a></li>
-          <li><a href="index.html#pricing">Mitra</a></li>
-          <li><a href="index.html#team">Team</a></li>
-          <li><a href="blog.html">Article</a></li>
-          <li><a href="index.html#contact">Contact</a></li>
-          <li><a href="#" class="login-btn" onclick="toggleLoginModal()">Login Admin</a></li>
+          <li><a href="index.php#hero" class="active">Home</a></li>
+          <li><a href="index.php#about">About</a></li>
+          <li><a href="index.php#services">Services</a></li>
+          <li><a href="index.php#portfolio">Gallery</a></li>
+          <li><a href="index.php#pricing">Mitra</a></li>
+          <li><a href="index.php#team">Team</a></li>
+          <li><a href="blog.php#article">Article</a></li>
+          <li><a href="index.php#contact">Contact</a></li>
+          
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -589,43 +589,66 @@
     </div>
     
     <!-- Portfolio Section -->
-    <section id="portfolio" class="portfolio section" style="background-color: #1B7825;">
+<section id="portfolio" class="portfolio section" style="background-color: #1B7825;">
 
-      <div class="container section-title" data-aos="fade-up">
-        <h2 style="color: #ffffff;">Gallery</h2>
-        <p style="color: #ffffff;">Berikut ini adalah beberapa momen kegiatan dengan mitra-mitra kami</p>
-      </div>
+<div class="container section-title" data-aos="fade-up">
+  <h2 style="color: #ffffff;">Gallery</h2>
+  <p style="color: #ffffff;">Berikut ini adalah beberapa momen kegiatan dengan mitra-mitra kami</p>
+</div>
+
+<div class="container">
+
+  <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+    <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
       
+      <?php
+      // Menyertakan koneksi ke database
+      include 'db_connection.php';
 
-      <div class="container">
+      // Query untuk mengambil data foto dari database
+      $sql = "SELECT photo_path FROM photos ORDER BY id DESC";
+      $result = mysqli_query($conn, $sql);
 
-        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+      // Mengecek apakah ada hasil dari query
+      if (mysqli_num_rows($result) > 0) {
+          // Menampilkan gambar-gambar yang diambil dari database
+          while ($row = mysqli_fetch_assoc($result)) {
+              // Menampilkan gambar dari database
+              echo '<div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">';
+              echo '<img src="' . $row['photo_path'] . '" class="img-fluid" alt="Foto">';
+              echo '<div class="portfolio-info">';
+              echo '<h4>Foto</h4>';
+              echo '<a href="' . $row['photo_path'] . '" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>';
+              echo '</div>';
+              echo '</div>';
+          }
+      } else {
+          echo '<p>No photos available.</p>';
+      }
 
-          
+      // Menutup koneksi database
+      mysqli_close($conn);
+      ?>
 
-          <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+      <!-- Gambar-gambar lain yang statis, bisa tetap ada di bawah -->
+      <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+        <img src="assets/img/sosialisasi1.jpeg" class="img-fluid" alt="">
+        <div class="portfolio-info">
+          <h4>Sosialisasi</h4>
+          <a href="assets/img/sosialisasi1.jpeg" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+        </div>
+      </div><!-- End Portfolio Item -->
 
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-              <img src="assets/img/sosialisasi1.jpeg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Sosialisasi</h4>
-                
-                <a href="assets/img/sosialisasi1.jpeg" title="Boat 1" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                
-              </div>
-            </div><!-- End Portfolio Item -->
+      <!-- Gambar-gambar lainnya tetap bisa ditambahkan jika perlu -->
+      <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+        <img src="assets/img/mitra2.jpeg" class="img-fluid" alt="">
+        <div class="portfolio-info">
+          <h4>Mitra</h4>
+          <a href="assets/img/mitra2.jpeg" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+        </div>
+      </div><!-- End Portfolio Item -->
 
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-              <img src="assets/img/mitra2.jpeg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Mitra</h4>
-                
-                <a href="assets/img/mitra2.jpeg" title="Collapsible 1" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-               
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+      <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
               <img src="assets/img/mitra1.jpeg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Mitra</h4>
@@ -734,17 +757,16 @@
                 
               </div>
             </div><!-- End Portfolio Item -->
-
-            
-            
-
-          </div><!-- End Portfolio Container -->
-
-        </div>
-
+      
+      <!-- Portfolio Items lainnya di sini -->
+      
+      
+            </div><!-- End Portfolio Container -->
       </div>
+</div>
 
-    </section><!-- /Portfolio Section -->
+</section><!-- /Portfolio Section -->
+
 
     <!-- Pricing Section -->
     <section id="pricing" class="pricing section" style="background-color: #1B7825;">
@@ -886,7 +908,7 @@
             <div class="member-info text-center">
               <h4 style="color: white;">Agus Setiono</h4>
               <span style="color: white;">Manager Pertanian</span>
-              <p style="color: white;">Aliquam iure quaerat voluptatem praesentium possimus unde laudantium vel dolorum distinctio dire flow</p>
+              <p style="color: white;">Manager Pertanian Divisi Pertanian PT Keong Nusantara Abadi bertanggung jawab atas perencanaan, pelaksanaan, dan pengawasan kegiatan operasional pertanian</p>
             </div>
           </div><!-- End Team Member -->
 
@@ -903,7 +925,7 @@
             <div class="member-info text-center">
               <h4 style="color: white;">Suwandi</h4>
               <span style="color: white;">KA Pertanian</span>
-              <p style="color: white;">Labore ipsam sit consequatur exercitationem rerum laboriosam laudantium aut quod dolores exercitationem ut</p>
+              <p style="color: white;">(KA) Pertanian Divisi Pertanian PT Keong Nusantara Abadi memiliki tanggung jawab utama dalam merancang strategi agronomi yang efektif dan berkelanjutan. Peran ini mencakup pengawasan teknis terhadap proses penanaman, pemeliharaan, dan panen tanaman</p>
             </div>
           </div><!-- End Team Member -->
 
@@ -920,7 +942,7 @@
             <div class="member-info text-center">
               <h4 style="color: white;">Kasan Asnawi</h4>
               <span style="color: white;">KA Pertanian</span>
-              <p style="color: white;">Illum minima ea autem doloremque ipsum quidem quas aspernatur modi ut praesentium vel tque sed facilis at qui</p>
+              <p style="color: white;">(KA) Pertanian Divisi Pertanian PT Keong Nusantara Abadi memiliki tanggung jawab utama dalam merancang strategi agronomi yang efektif dan berkelanjutan. Peran ini mencakup pengawasan teknis terhadap proses penanaman, pemeliharaan, dan panen tanaman</p>
             </div>
           </div><!-- End Team Member -->
 
@@ -947,8 +969,8 @@
           </div>
 
           <div class="col-lg-7" data-aos="fade-up" data-aos-delay="200">
-
             <div class="swiper init-swiper">
+
               <script type="application/json" class="swiper-config">
                 {
                   "loop": true,
@@ -965,7 +987,43 @@
                 }
               </script>
               <div class="swiper-wrapper">
+              <?php
+                        include 'db_connection.php'; // Pastikan untuk menyertakan koneksi database
 
+                        // Query untuk mengambil testimoni dari database
+                        $sql = "SELECT * FROM testimonials ORDER BY id DESC";
+                        $result = mysqli_query($conn, $sql);
+
+                        // Cek apakah ada testimoni
+                        if (mysqli_num_rows($result) > 0) {
+                            // Loop melalui data testimoni
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo '<div class="swiper-slide">';
+                                echo '<div class="testimonial-item">';
+                                echo '<div class="d-flex">';
+                                echo '<img src="' . $row['image_path'] . '" class="testimonial-img flex-shrink-0" alt="">';
+                                echo '<div>';
+                                echo '<h3>' . $row['name'] . '</h3>';
+                                echo '<h4>' . $row['role'] . '</h4>';
+                                echo '<div class="stars">';
+                                for ($i = 0; $i < $row['stars']; $i++) {
+                                    echo '<i class="bi bi-star-fill"></i>'; // Menampilkan bintang
+                                }
+                                echo '</div>';
+                                echo '</div>';
+                                echo '</div>';
+                                echo '<p>';
+                                echo '<i class="bi bi-quote quote-icon-left"></i>';
+                                echo '<span>' . $row['message'] . '</span>';
+                                echo '<i class="bi bi-quote quote-icon-right"></i>';
+                                echo '</p>';
+                                echo '</div>';
+                                echo '</div>';
+                            }
+                        }
+
+                        mysqli_close($conn); // Menutup koneksi database
+                        ?>
                 <div class="swiper-slide">
                   <div class="testimonial-item">
                     <div class="d-flex">
@@ -984,7 +1042,7 @@
                       <i class="bi bi-quote quote-icon-right"></i>
                     </p>
                   </div>
-                </div><!-- End testimonial item -->
+                </div> <!-- End testimonial item -->
 
                 <div class="swiper-slide">
                   <div class="testimonial-item">
@@ -1004,7 +1062,7 @@
                       <i class="bi bi-quote quote-icon-right"></i>
                     </p>
                   </div>
-                </div><!-- End testimonial item -->
+                </div> <!-- End testimonial item -->
 
                 <div class="swiper-slide">
                   <div class="testimonial-item">
@@ -1024,7 +1082,7 @@
                       <i class="bi bi-quote quote-icon-right"></i>
                     </p>
                   </div>
-                </div><!-- End testimonial item -->
+                </div> <!-- End testimonial item -->
 
                 <div class="swiper-slide">
                   <div class="testimonial-item">
@@ -1044,7 +1102,7 @@
                       <i class="bi bi-quote quote-icon-right"></i>
                     </p>
                   </div>
-                </div><!-- End testimonial item -->
+                </div> <!-- End testimonial item -->
 
                 <div class="swiper-slide">
                   <div class="testimonial-item">
@@ -1064,7 +1122,7 @@
                       <i class="bi bi-quote quote-icon-right"></i>
                     </p>
                   </div>
-                </div><!-- End testimonial item -->
+                </div> <!-- End testimonial item -->
 
               </div>
               <div class="swiper-pagination"></div>
@@ -1244,7 +1302,7 @@
               <p style="color: white;">Jika Anda memiliki pertanyaan, membutuhkan bantuan, atau tertarik untuk menjalin kemitraan bersama Mitra Sengon, jangan ragu untuk menghubungi Kami dengan klik di bawah ini</p>
           
               <!-- Gambar di atas tombol -->
-              <div class="text-center">
+              <div class="text-center"> 
                 <img src="assets/img/csimg.png" alt="Mitra Sengon" style="width: 50%; max-width: 200px; margin-bottom: 20px;">
               </div>
           
@@ -1320,7 +1378,7 @@
     </div>
 
     <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="sitename">MitraSengon</strong> <span>PT. Keong Nusantara Abadi</span></p>
+      <p>© <span>Copyright</span> <strong class="sitename"><a href="javascript:void(0);" onclick="toggleLoginModal()" style="color: black;">MitraSengon </a></strong> <span>PT. Keong Nusantara Abadi</span></p>
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->
         <!-- You can delete the links only if you've purchased the pro version. -->
